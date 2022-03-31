@@ -2,7 +2,7 @@
 namespace SmartContact\LaravelGoogleBigQuery\Service;
 
 use Google\Cloud\Core\Exception\NotFoundException;
-use SmartContactLaravelGoogleBigQuery\Exceptions\BigQueryInvalidRowException;
+use SmartContact\LaravelGoogleBigQuery\Exceptions\BigQueryInvalidRowException;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Illuminate\Support\Facades\Log;
 
@@ -28,7 +28,7 @@ class BigQuery
     public function insertRows($tableId, $data)
     {
         $table = $this->dataset->table($tableId);
-            $table->
+
         //formato $data = [['data' => $row1], ['data' => $row2]...['data' => $rowN]];
         $insertResponse = $table->insertRows($data);
 
