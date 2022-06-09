@@ -11,6 +11,7 @@ class BigQuery
     protected $projectId;
     protected $datasetId;
     protected $dataset;
+    protected $table;
     protected $bigQuery;
 
     public function __construct($projectId, $datasetId)
@@ -35,8 +36,7 @@ class BigQuery
         if (! $insertResponse->isSuccessful()) {
             foreach ($insertResponse->failedRows() as $row) {
                 foreach ($row['errors'] as $error) {
-                    Log::error($tableId . " - " . $error['reason'] . ":" .$error['message']);
-                    throw new BigQueryInvalidRowException();
+                    throw new BigQueryInvalidRowException($error['reason'] . ' - ' . $error['message']);
                 }
             }
         }
@@ -172,5 +172,4 @@ class BigQuery
         }
 
     }
-
 }
